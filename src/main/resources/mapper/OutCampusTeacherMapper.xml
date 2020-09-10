@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.ping.registration.dao.OutCampusTeacherMapper">
+  <resultMap id="BaseResultMap" type="com.lu.ping.registration.entity.OutCampusTeacher">
+    <id column="id_number" jdbcType="CHAR" property="idNumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tel_number" jdbcType="VARCHAR" property="telNumber" />
+    <result column="the_group" jdbcType="INTEGER" property="theGroup" />
+    <result column="psw" jdbcType="VARCHAR" property="psw" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id_number, name, tel_number, the_group, psw, account, bank_account, city
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from out_campus_teacher
+    where id_number = #{idNumber,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from out_campus_teacher
+    where id_number = #{idNumber,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lu.ping.registration.entity.OutCampusTeacher">
+    insert into out_campus_teacher (id_number, name, tel_number, 
+      the_group, psw, account, 
+      bank_account, city)
+    values (#{idNumber,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{telNumber,jdbcType=VARCHAR}, 
+      #{theGroup,jdbcType=INTEGER}, #{psw,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{bankAccount,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.ping.registration.entity.OutCampusTeacher">
+    insert into out_campus_teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="telNumber != null">
+        tel_number,
+      </if>
+      <if test="theGroup != null">
+        the_group,
+      </if>
+      <if test="psw != null">
+        psw,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="bankAccount != null">
+        bank_account,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telNumber != null">
+        #{telNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="theGroup != null">
+        #{theGroup,jdbcType=INTEGER},
+      </if>
+      <if test="psw != null">
+        #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.ping.registration.entity.OutCampusTeacher">
+    update out_campus_teacher
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telNumber != null">
+        tel_number = #{telNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="theGroup != null">
+        the_group = #{theGroup,jdbcType=INTEGER},
+      </if>
+      <if test="psw != null">
+        psw = #{psw,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_number = #{idNumber,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.ping.registration.entity.OutCampusTeacher">
+    update out_campus_teacher
+    set name = #{name,jdbcType=VARCHAR},
+      tel_number = #{telNumber,jdbcType=VARCHAR},
+      the_group = #{theGroup,jdbcType=INTEGER},
+      psw = #{psw,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR}
+    where id_number = #{idNumber,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.ping.registration.dao.RoleRootMapper">
+  <resultMap id="BaseResultMap" type="com.lu.ping.registration.entity.RoleRoot">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="the_group" jdbcType="INTEGER" property="theGroup" />
+    <result column="see_work" jdbcType="VARCHAR" property="seeWork" />
+    <result column="system_set" jdbcType="VARCHAR" property="systemSet" />
+    <result column="global_root" jdbcType="VARCHAR" property="globalRoot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, the_group, see_work, system_set, global_root
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role_root
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role_root
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.ping.registration.entity.RoleRoot">
+    insert into role_root (id, the_group, see_work, 
+      system_set, global_root)
+    values (#{id,jdbcType=INTEGER}, #{theGroup,jdbcType=INTEGER}, #{seeWork,jdbcType=VARCHAR}, 
+      #{systemSet,jdbcType=VARCHAR}, #{globalRoot,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.ping.registration.entity.RoleRoot">
+    insert into role_root
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="theGroup != null">
+        the_group,
+      </if>
+      <if test="seeWork != null">
+        see_work,
+      </if>
+      <if test="systemSet != null">
+        system_set,
+      </if>
+      <if test="globalRoot != null">
+        global_root,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="theGroup != null">
+        #{theGroup,jdbcType=INTEGER},
+      </if>
+      <if test="seeWork != null">
+        #{seeWork,jdbcType=VARCHAR},
+      </if>
+      <if test="systemSet != null">
+        #{systemSet,jdbcType=VARCHAR},
+      </if>
+      <if test="globalRoot != null">
+        #{globalRoot,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.ping.registration.entity.RoleRoot">
+    update role_root
+    <set>
+      <if test="theGroup != null">
+        the_group = #{theGroup,jdbcType=INTEGER},
+      </if>
+      <if test="seeWork != null">
+        see_work = #{seeWork,jdbcType=VARCHAR},
+      </if>
+      <if test="systemSet != null">
+        system_set = #{systemSet,jdbcType=VARCHAR},
+      </if>
+      <if test="globalRoot != null">
+        global_root = #{globalRoot,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.ping.registration.entity.RoleRoot">
+    update role_root
+    set the_group = #{theGroup,jdbcType=INTEGER},
+      see_work = #{seeWork,jdbcType=VARCHAR},
+      system_set = #{systemSet,jdbcType=VARCHAR},
+      global_root = #{globalRoot,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

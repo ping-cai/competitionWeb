@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lu.ping.registration.dao.FinalWorkScoreMapper">
+  <resultMap id="BaseResultMap" type="com.lu.ping.registration.entity.FinalWorkScore">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="work_name" jdbcType="VARCHAR" property="workName" />
+    <result column="work_maker" jdbcType="VARCHAR" property="workMaker" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, work_name, work_maker, grade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from final_work_score
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from final_work_score
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lu.ping.registration.entity.FinalWorkScore">
+    insert into final_work_score (id, work_name, work_maker, 
+      grade)
+    values (#{id,jdbcType=INTEGER}, #{workName,jdbcType=VARCHAR}, #{workMaker,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lu.ping.registration.entity.FinalWorkScore">
+    insert into final_work_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="workName != null">
+        work_name,
+      </if>
+      <if test="workMaker != null">
+        work_maker,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="workName != null">
+        #{workName,jdbcType=VARCHAR},
+      </if>
+      <if test="workMaker != null">
+        #{workMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lu.ping.registration.entity.FinalWorkScore">
+    update final_work_score
+    <set>
+      <if test="workName != null">
+        work_name = #{workName,jdbcType=VARCHAR},
+      </if>
+      <if test="workMaker != null">
+        work_maker = #{workMaker,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lu.ping.registration.entity.FinalWorkScore">
+    update final_work_score
+    set work_name = #{workName,jdbcType=VARCHAR},
+      work_maker = #{workMaker,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
